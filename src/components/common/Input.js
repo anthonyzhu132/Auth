@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextInput, View, Text } from 'react-native';
+import { TextInput, View, Text, ProgressViewIOSComponent } from 'react-native';
 
 const Input = (props) => {
   const { inputStyle, labelStyle, containerStyle } = styles;
@@ -8,6 +8,9 @@ const Input = (props) => {
      <View style={containerStyle}>
       <Text stlye={labelStyle}>{props.label}</Text>
       <TextInput
+      secureTextEntry={props.secureTextEntry}
+      placeholder={props.placeholder}
+      autoCorrect={false}
       value={props.value}
       onChangeText={props.onChangeText}
       style={inputStyle}
