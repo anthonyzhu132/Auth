@@ -3,22 +3,23 @@ import { View } from 'react-native';
 
 const CardItem = (props) => {
   return (
-    <View style={styles.container}>
+    <View style={styles.containerStyle}>
       {props.children}
     </View>
   );
 };
 
 const styles = {
-  container: {
+  containerStyle: {
     borderBottomWidth: 1,
     padding: 5,
     backgroundColor: '#fff',
-    justiftyContent: 'flex-start',
+    justifyContent: 'flex-start',
     flexDirection: 'row',
     borderColor: '#ddd',
     position: 'relative'
   }
 };
 
-export { CardItem }
+
+export default CardItem;

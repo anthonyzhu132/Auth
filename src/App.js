@@ -1,7 +1,8 @@
 import firebase from 'firebase';
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import { Header } from './components/common';
+import Header from './components/common/Header';
+import LoginForm from './components/LoginForm';
 
 class App extends Component {
   componenetWillMount() {
@@ -15,12 +16,14 @@ class App extends Component {
       measurementId: "G-TT2BQKB7Z7"
      });
   }
-  
+
   render() {
+    return (
     <View>
-      <Header headerText="Authentication" />
-      <Text> An App</Text>
+      <Header headerText="Authentication"/>
+      <LoginForm/>
     </View>
+    );
   };
 };
 
