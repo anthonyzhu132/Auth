@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import Header from './components/common/Header';
 import LoginForm from './components/LoginForm';
+import Button from './components/common/Button';
 
 class App extends Component {
   state = { loggedIn: false };
@@ -29,11 +30,23 @@ class App extends Component {
      })
   }
 
+  renderContent() {
+    if(this.state.loggedIn) {
+      return (
+        <Button>
+          Log out 
+        </Button>
+      )
+    } else {
+      <LoginForm/>
+    }
+  }
+
   render() {
     return (
     <View>
       <Header headerText="Authentication"/>
-      <LoginForm/>
+      {this.renderContent()}
     </View>
     );
   };
