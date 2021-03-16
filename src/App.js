@@ -4,9 +4,10 @@ import { View } from 'react-native';
 import Header from './components/common/Header';
 import LoginForm from './components/LoginForm';
 import Button from './components/common/Button';
+import Spinner from './components/common/Spinner';
 
 class App extends Component {
-  state = { loggedIn: false };
+  state = { loggedIn: null };
 
   componentWillMount() {
     const firebaseCofig = {
@@ -31,14 +32,13 @@ class App extends Component {
   }
 
   renderContent() {
-    if(this.state.loggedIn) {
-      return (
-        <Button>
-          Log out 
-        </Button>
-      )
-    } else {
-      <LoginForm/>
+    switch(this.state.loggedIn) {
+      case true:
+        return <Button>Log out</Button>
+      case false:
+        return <LoginForm/>
+      default:
+        return <Spinner size={"large"} />
     }
   }
 
