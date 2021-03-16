@@ -5,10 +5,10 @@ import Button from '../components/common/Button';
 import Card from '../components/common/Card';
 import CardItem from '../components/common/CardItem';
 import Input from '../components/common/Input';
-
+import Spinner from '../components/common/Spinner';
 
 class LoginForm extends Component {
-  state = { email: '', password: '', error: '' };
+  state = { email: '', password: '', error: '', loading: false };
 
   //Attempts to sign in with user's provided email and password
   //If there is no user, sign user up with email and password
@@ -17,7 +17,7 @@ class LoginForm extends Component {
   onButtonPress() {
     const { email, password } = this.state;
 
-    this.setState({ error: ''});
+    this.setState({ error: '', loading: true });
 
      firebase.auth().signInWithEmailAndPassword(email, password)
       .catch(() => {
@@ -27,6 +27,16 @@ class LoginForm extends Component {
           });
       });
   };
+
+  renderButton() {
+    if(this.state.loading) {
+      return <Spinner size={small} />
+    } else {
+      <Button onPress={this.onButtonPress.bind(this)}>
+        Log in
+      </Button>
+    }
+  }
 
   render() {
     return (
@@ -56,9 +66,7 @@ class LoginForm extends Component {
         </Text>
 
         <CardItem>
-          <Button onPress={this.onButtonPress.bind(this)}>
-            Log in
-          </Button>
+          {this.renderButton()}
         </CardItem>
       </Card>
     );
